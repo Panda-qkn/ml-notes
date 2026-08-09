@@ -30,10 +30,11 @@ def analyze_results(passes, fails, blocks):
 # ========== 必做3：递归阶乘（TODO：自己动手写） ==========
 # 提示：终止条件是 n == 1 时返回 1；否则返回 n * fact(n - 1)
 def fact(n):
+    print(f"进入 fact({n})")    #每层打印n
     if n==1:
         return 1
     return n * fact(n - 1)
-    pass  # 删掉这行，写你的实现
+# n=1000 会报错，python递归上限是1000，次数过多会导致栈溢出
 
 # ========== 选做：默认参数陷阱复现（TODO：自己动手写） ==========
 def add_case(case, case_list=[]):
@@ -60,7 +61,7 @@ if __name__ == "__main__":
     print(f"总数：{total},通过率: {pass_rate:.1f}%")
 
     # --- 必做3 验收 ---
-    print(fact(5))
+    print(fact(999))
 
     # --- 选做 验收 ---
     print(add_case("直到大地变成一颗酸橙"))
@@ -71,8 +72,11 @@ if __name__ == "__main__":
     #['直到大地变成一颗酸橙', '你好Doctor']
     #['直到大地变成一颗酸橙', '你好Doctor', '我的粥ID是熊熊的猫']
     
-    #问题原因，case_list=[]相当于是一个变量，每次调用的时候，如果他的内容变化了，再调用时是用的已变化的值
+    #问题原因，case_list=[]在def执行时只创建一次，之后每次调用共享的是同一个list对象，所以第一次append的内容在第二次时还存在
     print(add_caserepair("直到大地变成一颗酸橙"))
     print(add_caserepair("你好Doctor"))
     print(add_caserepair("我的粥ID是熊熊的猫"))
     #修改后打印如下
+    #['直到大地变成一颗酸橙']
+    #['你好Doctor']
+    #['我的粥ID是熊熊的猫']

@@ -1,13 +1,12 @@
 @echo off
-chcp 65001 >nul
 cd /d %~dp0
 
-echo === ä¸€é”®æäº¤æŽ¨é€ ===
+echo === Ò»¼üÌá½»ÍÆËÍ ===
 git add -A
 
 git diff --cached --quiet
 if %errorlevel%==0 (
-    echo æ²¡æœ‰æ–°çš„æ”¹åŠ¨ï¼Œæ— éœ€æäº¤ã€‚
+    echo Ã»ÓÐÐÂµÄ¸Ä¶¯£¬ÎÞÐèÌá½»¡£
     pause
     exit /b 0
 )
@@ -17,24 +16,24 @@ if "%msg%"=="" set msg=study: %date:~0,4%-%date:~5,2%-%date:~8,2%
 
 git commit -m "%msg%"
 
-rem æŽ¨é€ï¼Œå¤±è´¥è‡ªåŠ¨é‡è¯•3æ¬¡ï¼Œé—´éš”5ç§’
+rem ÍÆËÍ£¬Ê§°Ü×Ô¶¯ÖØÊÔ3´Î£¬¼ä¸ô5Ãë
 set tries=0
 :push_retry
 set /a tries+=1
-if %tries% gtr 1 echo ç¬¬ %tries% æ¬¡å°è¯•æŽ¨é€...
+if %tries% gtr 1 echo µÚ %tries% ´Î³¢ÊÔÍÆËÍ...
 git push
 if %errorlevel%==0 (
     echo.
-    echo === æŽ¨é€æˆåŠŸï¼Œç»¿ç‚¹+1 ===
+    echo === ÍÆËÍ³É¹¦£¬ÂÌµã+1 ===
     pause
     exit /b 0
 )
 if %tries% lss 3 (
-    echo æŽ¨é€å¤±è´¥ï¼Œ5ç§’åŽé‡è¯•...
+    echo ÍÆËÍÊ§°Ü£¬5ÃëºóÖØÊÔ...
     timeout /t 5 /nobreak >nul
     goto push_retry
 )
 
 echo.
-echo === é‡è¯•3æ¬¡ä»å¤±è´¥ï¼šæ£€æŸ¥ä»£ç†å·¥å…·æ˜¯å¦å¼€å¯ï¼Œç¨åŽå†åŒå‡»æœ¬è„šæœ¬ ===
+echo === ÖØÊÔ3´ÎÈÔÊ§°Ü£º¼ì²é´úÀí¹¤¾ßÊÇ·ñ¿ªÆô£¬ÉÔºóÔÙË«»÷±¾½Å±¾ ===
 pause
