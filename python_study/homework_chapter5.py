@@ -34,7 +34,7 @@ def fact(n):
     if n==1:
         return 1
     return n * fact(n - 1)
-# n=1000 会报错，python递归上限是1000，次数过多会导致栈溢出
+# n=1000 会报错，python递归上限是1000，次数过多会导致栈溢出,打印报错：RecursionError: maximum recursion depth exceeded
 
 # ========== 选做：默认参数陷阱复现（TODO：自己动手写） ==========
 def add_case(case, case_list=[]):
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     print(f"总数：{total},通过率: {pass_rate:.1f}%")
 
     # --- 必做3 验收 ---
-    print(fact(999))
+    print(fact(1000))
 
     # --- 选做 验收 ---
     print(add_case("直到大地变成一颗酸橙"))
