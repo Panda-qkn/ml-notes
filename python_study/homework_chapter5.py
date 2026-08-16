@@ -59,9 +59,9 @@ if __name__ == "__main__":
     # --- 必做2 验收 ---
     total, pass_rate = analyze_results(80, 15, 5)
     print(f"总数：{total},通过率: {pass_rate:.1f}%")
-
+    
     # --- 必做3 验收 ---
-    print(fact(1000))
+    print(fact(100))
 
     # --- 选做 验收 ---
     print(add_case("直到大地变成一颗酸橙"))
