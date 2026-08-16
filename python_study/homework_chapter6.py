@@ -50,8 +50,22 @@ formatted = [f"{case_id}:{status}" for case_id, status in results]
 #   提示：带下标用 enumerate
 def read_failed(lines):
     # TODO: 在这里写生成器逻辑  这题不会做，完全没有理解生成器
-    pass
+    # 作业参考答案
+    for line in lines:
+        if "FAILED" in line:
+            yield line
 
+def count_to(n):
+    i = 1
+    while i <= n:
+        yield i
+        i = i + 1
+
+# 补交作业
+def read_by_result(lines, keyword):
+    for line in lines:
+        if keyword in line:
+            yield line
 
 # ========== 选做：递归 vs 生成器思考（TODO：自己动手写） ==========
 # 题目拆解：用 yield 输出斐波那契前20项
@@ -102,7 +116,23 @@ if __name__ == "__main__":
     # for 行号, 内容 in enumerate(read_failed(fake_log), 1):
     #     print(f"第{行号}行: {内容}")
     print(fake_log)
-
+    for 行号,内容 in enumerate(read_failed(fake_log), 1):
+        print(f"第{行号}行：{内容}")
+    print(list(read_failed(fake_log)))
+    #补交作业 把 `read_failed` 复制进作业文件跑通后，再加一个 `read_by_result(lines, keyword)`：
+    # 筛选词变成参数，分别用它打印 FAILED 行和 PASSED 行。
+    for 行号,内容 in enumerate(read_by_result(fake_log,"FAILED"), 1):
+        print(f"第{行号}行：{内容}")
+    for 行号,内容 in enumerate(read_by_result(fake_log,"PASSED"), 1):
+        print(f"第{行号}行：{内容}")
+    print(list(read_by_result(fake_log,"FAILED")))
+    print(list(read_by_result(fake_log,"PASSED")))
+    
+    g = count_to(3)
+    print(next(g))
+    print(next(g))
+    print(next(g))
+    
     # --- 选做 验收 ---
     for n in fib(20):
         print(n, end=" ")
